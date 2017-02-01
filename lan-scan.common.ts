@@ -1,8 +1,7 @@
 import { View } from 'ui/core/view';
-import { EventData } from 'data/observable';
-import { NativeScriptLanScan } from ".";
+import { EventData, Observable } from 'data/observable';
 
-export abstract class LanScan extends View {
+export abstract class LanScan extends Observable {
 	public lanScanner: any;
 	public abstract start(): void;
 	public abstract pingAddress(): void;

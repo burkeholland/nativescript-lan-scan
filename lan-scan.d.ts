@@ -13,7 +13,7 @@ declare module 'nativescript-lan-scan' {
 
         public ios: any;
 
-        
+
     }
 
     export class Address {
