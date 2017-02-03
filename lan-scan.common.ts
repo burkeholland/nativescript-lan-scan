@@ -3,6 +3,7 @@ import { EventData, Observable } from 'data/observable';
 
 export abstract class LanScan extends Observable {
 	public lanScanner: any;
+	
 	public abstract start(): void;
 	public abstract pingAddress(): void;
 	
@@ -12,12 +13,14 @@ export abstract class LanScan extends Observable {
 	public static scanningFailedEvent: string = "scanningFailed";
 	public static progressPingedEvent: string = "progressPinged";
 
-	notifyFoundNewDeviceEvent(device: any) {
-		this.notify(device);
+	notifyFoundNewDeviceEvent(eventName: string, deviceInfo: DeviceInfo) {
+		let args: FoundDeviceEventData = { eventName: eventName, object: this, deviceInfo: deviceInfo }
+		this.notify(args);
 	}
 
-	notifyScanningFinishedEvent(status: any) {
-		this.notify(status);
+	notifyScanningFinishedEvent(eventName: string, status: string) {
+		let args: StatusEventData = { eventName: eventName, object: this, status: status }
+		this.notify(args);
 	}
 
 	notifyScanningFailedEvent(eventName: string) {
@@ -25,10 +28,10 @@ export abstract class LanScan extends Observable {
 		this.notify(args);
 	}
 
-	notifyFoundNewAddressEvent(eventName: string, address: Address) {
-		let args: AddressEventData = { eventName: eventName, object: this, address: address }
-		this.notify(args);
-	}
+	// notifyFoundNewAddressEvent(eventName: string, address: Address) {
+	// 	let args: AddressEventData = { eventName: eventName, object: this, address: address }
+	// 	this.notify(args);
+	// }
 
 	notifyProgressPingedEvent(eventName: string, pingProgress: PingProgress) {
 		let args: PingProgressEventData = { eventName: eventName, object: this, pingProgress: pingProgress }
@@ -53,5 +56,19 @@ export class PingProgress {
 
 export interface PingProgressEventData extends EventData {
 	pingProgress: PingProgress
+}
+
+export interface StatusEventData extends EventData {
+	status: string;
+}
+
+export class DeviceInfo {
+	ipAddress: string;
+	macAddress: string;
+	hostName: string;
+}
+
+export interface FoundDeviceEventData extends EventData {
+	deviceInfo: DeviceInfo;
 }
 

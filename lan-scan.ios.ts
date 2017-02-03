@@ -1,4 +1,4 @@
-import { LanScan as LanScanCommon, Address, PingProgress } from './lan-scan.common';
+import { LanScan as LanScanCommon, Address, PingProgress, DeviceInfo } from './lan-scan.common';
 
 class LanScanDelegateImpl extends NSObject implements MMLANScannerDelegate {
     public static ObjCProtocols = [MMLANScannerDelegate];
@@ -12,46 +12,41 @@ class LanScanDelegateImpl extends NSObject implements MMLANScannerDelegate {
     }
 
     public lanScanDidFindNewDevice(device: any) {
-        // let owner = this._owner.get();
-        // if (owner) {
-        //     owner.notifyFoundNewDeviceEvent(device);
-        // }
-        console.log(`New Device Owner: ${this._owner}`);
+        let owner = this._owner.get();
+        if (owner) {
+
+            let deviceInfo: DeviceInfo = {
+                ipAddress: device.ipAddress,
+                macAddress: device.macAddress,
+                hostName: device.hostName
+            }
+
+            owner.notifyFoundNewDeviceEvent(LanScan.foundNewDeviceEvent, deviceInfo);
+        }
     }
 
-    public lanScanDidFinishScanning(status: any) {
-        // let owner = this._owner.get();
-        // if (owner) {
-        //     owner.notifyScanningFinishedEvent(status);
-        // }
-        console.log(`Finish Scanning Owner: ${this._owner}`);
+    public lanScanDidFinishScanningWithStatus(status: any) {
+        console.log('LanScanner Finished Scanning');
+        let owner = this._owner.get();
+        if (owner) {
+            owner.notifyScanningFinishedEvent(LanScan.scanningFinishedEvent, status);
+        }
     }
 
     public lanScanDidFailedToScan() {
-        // let owner = this._owner.get();
-        // if (owner) {
-        //     owner.notifyScanningFailedEvent(LanScanCommon.scanningFailedEvent);
-        // }
-        console.log(`Failed Owner: ${this._owner }`);
-    }
-
-    public lanScanDidFindNewAddressWithIPMACAddressAndHostname(ip: string, macAddress:string, hostName: string) {
-        // let owner = this._owner.get();
-        // if (owner) {
-        //     let address: Address = { ip, macAddress, hostName };
-        //     owner.notifyFoundNewAddressEvent(LanScanCommon.foundNewAddressEvent, address);
-        // }
-        console.log(`New Address Owner: ${this._owner}`);
+        console.log('Lan Scanner Failed');
+        let owner = this._owner.get();
+        if (owner) {
+            owner.notifyScanningFailedEvent(LanScanCommon.scanningFailedEvent);
+        }
     }
 
     public lanScanProgressPingedFrom(pingedHosts: number, overallHosts: number) {
-        // let owner = this._owner.get();
-        // if (owner) {
-        //     console.log('pinged!');
-        //     let pingProgress: PingProgress = { pingedHosts, overallHosts };
-        //     owner.notifyProgressPingedEvent(LanScanCommon.progressPingedEvent, pingProgress);
-        // }
-        console.log(`Pinged Owner: ${this._owner}, pingedHosts: ${pingedHosts}, overallHosts: ${overallHosts}` );
+        let owner = this._owner.get();
+        if (owner) {
+            let pingProgress: PingProgress = { pingedHosts, overallHosts };
+            owner.notifyProgressPingedEvent(LanScanCommon.progressPingedEvent, pingProgress);
+        }
     }
 }
 
@@ -73,6 +68,7 @@ export class LanScan extends LanScanCommon {
     }
 
     start() {
+        console.log('LanScanner Beginning Scan');
         this._ios.start();
     }
 

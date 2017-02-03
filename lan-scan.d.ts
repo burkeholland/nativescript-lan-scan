@@ -1,10 +1,10 @@
 declare module 'nativescript-lan-scan' {
 
     import { View } from "ui/core/view";
-    import { EventData } from "data/observable";
+    import { Observable, EventData } from "data/observable";
     import * as dependencyObservable from 'ui/core/dependency-observable';
 
-    export class LanScan extends View {
+    export class LanScan extends Observable {
         public static foundNewDeviceEvent: string;
         public static foundNewAddressEvent: string;
         public static scanningFinishedEvent: string;
@@ -13,7 +13,7 @@ declare module 'nativescript-lan-scan' {
 
         public ios: any;
 
-
+        public start(): void;
     }
 
     export class Address {
@@ -25,4 +25,28 @@ declare module 'nativescript-lan-scan' {
     export interface AddressEventData extends EventData {
         address: Address;
     }
+
+    export class PingProgress {
+        pingedHosts: number;
+        overallHosts: number;
+    }
+
+    export interface PingProgressEventData extends EventData {
+        pingProgress: PingProgress
+    }
+
+    export interface StatusEventData extends EventData {
+        status: string;
+    }
+
+    export class DeviceInfo {
+        ipAddress: string;
+        macAddress: string;
+        hostName: string;
+    }
+
+    export interface FoundDeviceEventData extends EventData {
+        deviceInfo: DeviceInfo;
+    }
+
 }

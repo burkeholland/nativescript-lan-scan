@@ -1,19 +1,27 @@
 import {Observable} from 'data/observable';
-import { LanScan } from 'nativescript-lan-scan';
-
+import { ObservableArray } from 'data/observable-array';
+import { LanScan, FoundDeviceEventData, DeviceInfo } from 'nativescript-lan-scan';
 
 export class HelloWorldModel extends Observable {
-  public message: string;
 
-  constructor() {
-    super();
+    private _lanScan: LanScan;
 
-    var lanScan = new LanScan();
+    public devices: ObservableArray<DeviceInfo>;
 
-    lanScan.foundNewAddress = function(args) {
-        console.log("OMG");
+    constructor() {
+        super();
+
+        this._lanScan = new LanScan();
+
+        this.devices = new ObservableArray([]);
+
+        this._lanScan.on(LanScan.foundNewDeviceEvent, (args: FoundDeviceEventData) => {
+            this.devices.push(args.deviceInfo);
+        });
     }
 
-    lanScan.start();
-  }
+    onTap() {
+        console.log('starting the lan scanner');
+        this._lanScan.start();
+    }
 }
