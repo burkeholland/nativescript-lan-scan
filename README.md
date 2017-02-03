@@ -54,6 +54,8 @@ lanScan.start();
 lanScan.stop();
 
 // Get the SSID
+// Note that this doesn't work in the simulator,
+// it will say "No Wifi Available"
 let ssid = lanScan.fetchSSIDInfo();
 
 ```
