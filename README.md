@@ -51,6 +51,7 @@ lanScan.start();
 // If, in the middle of the operation you want to stop the scan
 lanScan.stop();
 
-// 
+// Get the SSID
+let ssid = lanScan.fetchSSIDInfo();
 
 ```
