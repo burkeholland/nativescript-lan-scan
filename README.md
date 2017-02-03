@@ -1,16 +1,17 @@
-# NativeScript LanScan
+# NativeScript LanScan [Beta]
+(iOS Only)
+## Getting started
+This plugin is a wrapper around the iOS MMLanScan library:
+[https://github.com/mavris/MMLanScan](https://github.com/mavris/MMLanScan)
 
-## What Is It?
+To use this plugin in a NativeScript app:
 
-A [NativeScript](https://www.nativescript.org) plugin that scans your local network for devices and returns their IP and Mac Address. It is a wrapper for the [MMLanScan](https://github.com/mavris/MMLanScan) iOS library.
+1. Run: `tns plugin add nativescript-lan-scan`
 
-A wrapper for [MMLanScan] iOS library as a plugin for  that allows you to scan your local network and pick up any attached devices. Check it out...
+## What does it do?
+This plugin will scan a local network and return an array of all detected IP and MAC addresses. See the original [MMLanScan](https://github.com/mavris/MMLanScan) for more details.
 
-![Gif]
-
-### This plugin is currently iOS only
-
-## Usage
+## How do you use it?
 
 Add the plugin to your NativeScript app
 
