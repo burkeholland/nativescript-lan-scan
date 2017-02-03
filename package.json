@@ -1,12 +1,11 @@
 {
   "name": "nativescript-lan-scan",
-  "version": "1.0.0",
-  "description": "Your awesome NativeScript plugin.",
+  "version": "0.1.0",
+  "description": "NativeScript wrapper for iOS MMLanScan CocoaPod [BETA]",
   "main": "lan-scan",
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
-      "android": "2.3.0",
       "ios": "2.3.0"
     },
     "tns-ios": {
@@ -32,12 +31,11 @@
   "keywords": [
     "NativeScript",
     "JavaScript",
-    "Android",
     "iOS"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "youremail@yourdomain.com"
+    "name": "Burke Holland",
+    "email": "burkeholland@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/Burke Holland/nativescript-lan-scan/issues"
