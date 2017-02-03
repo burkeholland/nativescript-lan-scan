@@ -1,8 +1,8 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
+  "description": "NativeScript LanScan Demo",
+  "license": "MIT",
   "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "repository": "https://github.com/burkeholland/nativescript-lan-scan",
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-ios": {
@@ -10,7 +10,7 @@
     }
   },
   "dependencies": {
-    "nativescript-lan-scan": "file:///Users/burkeholland/dev/burkeholland/nativescript-lan-scan",
+    "nativescript-lan-scan": "../",
     "nativescript-theme-core": "~1.0.2",
     "tns-core-modules": "2.5.0"
   },
