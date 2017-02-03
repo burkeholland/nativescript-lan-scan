@@ -25,7 +25,8 @@ https://docs.nativescript.org/ui/components.
     class names available for styling your app at https://docs.nativescript.org/ui/theme.
     -->
     <StackLayout class="p-20">
-        <Label text="Scan Test" class="h1 text-center"/>
+        <Progress maxValue="254" value="{{ progress }}" class="progress m-t-20 m-b-20"></Progress>
+        <Label text="{{ status }}" class="h1 text-center"/>
         <Button text="Scan" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
         <ListView items="{{ devices }}">
             <ListView.itemTemplate>
