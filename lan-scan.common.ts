@@ -5,7 +5,8 @@ export abstract class LanScan extends Observable {
 	public lanScanner: any;
 	
 	public abstract start(): void;
-	public abstract pingAddress(): void;
+	public abstract stop(): void;
+	public abstract fetchSSIDInfo(): string;
 	
 	public static foundNewDeviceEvent: string = "foundNewDevice";
 	public static foundNewAddressEvent: string = "foundNewAddress";
@@ -18,7 +19,7 @@ export abstract class LanScan extends Observable {
 		this.notify(args);
 	}
 
-	notifyScanningFinishedEvent(eventName: string, status: string) {
+	notifyScanningFinishedEvent(eventName: string, status: Status) {
 		let args: StatusEventData = { eventName: eventName, object: this, status: status }
 		this.notify(args);
 	}
@@ -54,16 +55,20 @@ export interface PingProgressEventData extends EventData {
 }
 
 export interface StatusEventData extends EventData {
-	status: string;
+	status: Status;
 }
 
 export class DeviceInfo {
 	ipAddress: string;
 	macAddress: string;
-	hostName: string;
 }
 
 export interface FoundDeviceEventData extends EventData {
 	deviceInfo: DeviceInfo;
+}
+
+export enum Status {
+	LanScannerStatusFinished,
+	LanScannerStatusCancelled
 }
 

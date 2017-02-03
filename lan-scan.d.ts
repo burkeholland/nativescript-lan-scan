@@ -14,6 +14,10 @@ declare module 'nativescript-lan-scan' {
         public ios: any;
 
         public start(): void;
+
+        public stop(): void;
+
+        public fetchSSIDInfo(): string;
     }
 
     export class Address {
@@ -32,21 +36,25 @@ declare module 'nativescript-lan-scan' {
     }
 
     export interface PingProgressEventData extends EventData {
-        pingProgress: PingProgress
+        pingProgress: PingProgress;
     }
 
     export interface StatusEventData extends EventData {
-        status: string;
+        status: Status;
     }
 
     export class DeviceInfo {
         ipAddress: string;
         macAddress: string;
-        hostName: string;
     }
 
     export interface FoundDeviceEventData extends EventData {
         deviceInfo: DeviceInfo;
     }
 
+    export enum Status {
+        LanScannerStatusFinished,
+        LanScannerStatusCancelled
+    }
 }
+
