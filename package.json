@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lan-scan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NativeScript wrapper for iOS MMLanScan CocoaPod [BETA]",
   "main": "lan-scan",
   "typings": "index.d.ts",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Burke Holland/nativescript-lan-scan.git"
+    "url": "https://github.com/BurkeHolland/nativescript-lan-scan.git"
   },
   "keywords": [
     "NativeScript",
@@ -38,10 +38,10 @@
     "email": "burkeholland@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/Burke Holland/nativescript-lan-scan/issues"
+    "url": "https://github.com/BurkeHolland/nativescript-lan-scan/issues"
   },
   "license": "MIT",
-  "homepage": "https://github.com/Burke Holland/nativescript-lan-scan",
+  "homepage": "https://github.com/BurkeHolland/nativescript-lan-scan",
   "readmeFilename": "README.md",
   "devDependencies": {
     "tns-core-modules": "^2.3.0",
