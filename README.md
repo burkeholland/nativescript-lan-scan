@@ -11,7 +11,7 @@ To use this plugin in a NativeScript app:
 ## What does it do?
 This plugin will scan a local network and return an array of all detected IP and MAC addresses. See the original [MMLanScan](https://github.com/mavris/MMLanScan) for more details.
 
-![lan-scan-demo](!https://cloud.githubusercontent.com/assets/686963/22609186/d5020ff8-ea25-11e6-8b34-7636f3b01109.gif)
+![lan-scan-demo](https://cloud.githubusercontent.com/assets/686963/22609186/d5020ff8-ea25-11e6-8b34-7636f3b01109.gif)
 
 ## How do you use it?
 
