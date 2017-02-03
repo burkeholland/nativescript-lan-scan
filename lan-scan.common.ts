@@ -28,11 +28,6 @@ export abstract class LanScan extends Observable {
 		this.notify(args);
 	}
 
-	// notifyFoundNewAddressEvent(eventName: string, address: Address) {
-	// 	let args: AddressEventData = { eventName: eventName, object: this, address: address }
-	// 	this.notify(args);
-	// }
-
 	notifyProgressPingedEvent(eventName: string, pingProgress: PingProgress) {
 		let args: PingProgressEventData = { eventName: eventName, object: this, pingProgress: pingProgress }
 		this.notify(args);
