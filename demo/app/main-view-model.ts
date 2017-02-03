@@ -10,6 +10,7 @@ export class HelloWorldModel extends Observable {
     public status: string = "Scan Test";
     public max: number = 254;
     public progress: number = 0;
+    public ssid: string = "SSID";
 
     constructor() {
         super();
@@ -33,8 +34,11 @@ export class HelloWorldModel extends Observable {
     }
 
     onTap() {
-        console.log('starting the lan scanner');
+        this.devices.splice(0, this.devices.length);
         this._lanScan.start();
+        
         this.set('status', 'Scanning');
+
+        this.set('ssid', this._lanScan.fetchSSIDInfo());
     }
 }

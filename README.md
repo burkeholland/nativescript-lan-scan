@@ -1,96 +1,56 @@
-# Develop a NativeScript plugin now (w/ TypeScript)
+# NativeScript LanScan
 
-## Getting started
+## What Is It?
 
-1. `git clone https://github.com/NathanWalker/nativescript-plugin-seed.git myplugin`
-2. `npm install -g typescript`
-3. `cd myplugin`
-4. `npm run postclone`
-5. `npm run setup`
-6. Get to work.
+A [NativeScript](https://www.nativescript.org) plugin that scans your local network for devices and returns their IP and Mac Address. It is a wrapper for the [MMLanScan](https://github.com/mavris/MMLanScan) iOS library.
 
-This seed expands on several things [presented here](http://developer.telerik.com/featured/creating-nativescript-plugins-in-typescript/).
+A wrapper for [MMLanScan] iOS library as a plugin for  that allows you to scan your local network and pick up any attached devices. Check it out...
+
+![Gif]
 
 ## Usage
 
-The seed is prepared to allow you to test and try out your plugin via the `demo` folder.
-Additionally it provides a proper `.gitignore` to keep GitHub tidy as well as `.npmignore` to ensure everyone is happy when you publish your plugin via npm.
-
-### Linking to CocoaPod or Android Arsenal plugins
-
-You will want to create these folders and files in the root:
+Add the plugin to your NativeScript app
 
 ```
-platforms --
-  ios --
-    Podfile
-  android --
-    include.gradle
+tns plugin add nativescript-lan-scan
 ```
 
-Doing so will open up those native apis to your plugin :)
-
-Take a look at these existing plugins for how that can be done very simply:
-
-* [nativescript-cardview](https://github.com/bradmartin/nativescript-cardview/tree/master/platforms)
-* [nativescript-floatingactionbutton](https://github.com/bradmartin/nativescript-floatingactionbutton/tree/master/platforms)
-
-### Typical development workflow:
-
-1. Make changes to plugin files
-2. Make changes in `demo` that would test those changes out
-3. `npm run demo.ios` or `npm run demo.android`  **(must be run from the root directory)**
-
-Those `demo` tasks are just general helpers. You may want to have more granular control on the device and/or emulator you want to run. For that, you can just run things the manual way:
+Include the plugin in your application. You will need to include a few of the event classes as well if you are using TypeScript - just so TypeScript is happy. 
 
 ```
-cd demo
+import { LanScan, FoundDeviceEventData, DeviceInfo, PingProgressEvent, PingProgress }
 
-// when developing, to ensure the latest code is built into the demo, it's a guarantee to remove the plugin and add it back
-tns plugin remove nativescript-lan-scan
-tns plugin add ..
+var lanScan = new LanScan();
 
-// manual platform adds
-tns platform add ios
-// and/or
-tns platform add android
-```
+// Wire up callback events from the Lan Scanner
 
-Then use any of the available options from the `tns` command line:
+// Fires whenever a devices is discovered
+this._lanScan.on(LanScan.foundNewDeviceEvent, (args: FoundDeviceEventData) => {
+    // Device info is found on the args.deviceInfo object...
+    // args.deviceInfo.ipAddress
+    // args.deviceInfo.macAddress
+});
 
-* [Emulate your project](https://github.com/NativeScript/nativescript-cli#emulate-your-project)
-* [Run your project](https://github.com/NativeScript/nativescript-cli#run-your-project)
-* [Full list of commands](https://github.com/NativeScript/nativescript-cli#the-commands)
+// Fires everytime an address on the subnet is pinged
+this._lanScan.on(LanScan.progressPingedEvent, (args: PingProgressEventData) => {
+    // args.pingProgress.overallHosts - total number hosts that the scanner will ping through
+    // args.pingProgress.pingedHosts - current number of hosts that have been pinged
+});
 
-## Unittesting
-This plugin automatically adds Jasmine-based unittest support to your plugin.
-Open `demo/app/tests/tests.js` and adjust its contents.
+this._lanScan.on(LanScan.scanningFinishedEvent, (args) => {
+    // Status: enum...
+    // 0: Finished
+    // 1: Stopped
+});
 
-You can read more about this topic [here](https://docs.nativescript.org/tooling/testing).
+// Start the Lan Scanner
+lanScan.start();
 
-Once you're ready to test your plugin's API execute one of these commands in the plugin root:
 
-```
-npm run test.ios
-npm run test.android
-```
+// If, in the middle of the operation you want to stop the scan
+lanScan.stop();
 
-## Publish
+// 
 
-When you have everything ready to publish:
-
-* Bump the version number in `package.json`
-* `npm run build` - **very important** - ensure the latest is built **before** you publish
-* `npm publish`
-
-## Contributing - Want to make the seed better?
-
-Or at least help keep it up to date with NativeScript releases, which would be excellent.
-
-```
-npm install -g typescript  // if you don't already have it
-git clone https://github.com/NathanWalker/nativescript-plugin-seed
-cd nativescript-plugin-seed
-
-// Improve!
 ```

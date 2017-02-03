@@ -1,4 +1,6 @@
-import { LanScan as LanScanCommon, Address, PingProgress, DeviceInfo } from './lan-scan.common';
+import { LanScan as LanScanCommon, Address, PingProgress, DeviceInfo, Status } from './lan-scan.common';
+
+declare var LANProperties;
 
 class LanScanDelegateImpl extends NSObject implements MMLANScannerDelegate {
     public static ObjCProtocols = [MMLANScannerDelegate];
@@ -18,14 +20,13 @@ class LanScanDelegateImpl extends NSObject implements MMLANScannerDelegate {
             let deviceInfo: DeviceInfo = {
                 ipAddress: device.ipAddress,
                 macAddress: device.macAddress,
-                hostName: device.hostName
             }
 
             owner.notifyFoundNewDeviceEvent(LanScan.foundNewDeviceEvent, deviceInfo);
         }
     }
 
-    public lanScanDidFinishScanningWithStatus(status: any) {
+    public lanScanDidFinishScanningWithStatus(status: Status) {
         console.log('LanScanner Finished Scanning');
         let owner = this._owner.get();
         if (owner) {
@@ -72,11 +73,12 @@ export class LanScan extends LanScanCommon {
         this._ios.start();
     }
 
-    pingAddress() {
-        this._ios.pingAddress();
+    stop() {
+        console.log('LanScanner Was Stopped');
+        this._ios.stop();
     }
 
-    pingResult(PingResult: any) {
-        this.pingResult(PingResult);
+    fetchSSIDInfo(): string {
+        return LANProperties.fetchSSIDInfo();
     }
 }

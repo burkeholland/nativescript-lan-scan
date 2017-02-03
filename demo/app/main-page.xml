@@ -10,7 +10,7 @@ https://docs.nativescript.org/ui/components.
     http://docs.nativescript.org/ui/action-bar
     -->
     <Page.actionBar>
-        <ActionBar title="My App" icon="" class="action-bar">
+        <ActionBar title="{{ ssid }}" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
     <!--
@@ -33,7 +33,6 @@ https://docs.nativescript.org/ui/components.
                 <GridLayout columns="auto, auto" rows="20, auto">
                     <Label text="{{ ipAddress }}" col="0" row="0"></Label>
                     <Label text="{{ macAddress }}" col="0" row="1"></Label>
-                    <Label text="{{ hostName }}" col="1" rowSpan="2"></Label>
                 </GridLayout>
             </ListView.itemTemplate>
         </ListView>
