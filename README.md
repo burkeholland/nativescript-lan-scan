@@ -8,6 +8,8 @@ A wrapper for [MMLanScan] iOS library as a plugin for  that allows you to scan y
 
 ![Gif]
 
+### This plugin is currently iOS only
+
 ## Usage
 
 Add the plugin to your NativeScript app
