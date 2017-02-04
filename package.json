@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lan-scan",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "NativeScript wrapper for iOS MMLanScan CocoaPod [BETA]",
   "main": "lan-scan",
   "typings": "index.d.ts",
