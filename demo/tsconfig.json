@@ -1,11 +1,22 @@
 {
     "compilerOptions": {
+        "lib": [
+            "es6",
+            "dom"
+        ],
         "module": "commonjs",
         "target": "es5",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ]
+        }
     },
     "exclude": [
         "node_modules",
