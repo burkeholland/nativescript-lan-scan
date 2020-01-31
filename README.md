@@ -1,5 +1,7 @@
 # NativeScript LanScan [Beta]
 (iOS Only)
+To work on iOS 13.3 modify the 'MacFinder.h' file in accordance to the PR: [https://github.com/mavris/MacFinder/pull/10](https://github.com/mavris/MacFinder/pull/10)
+
 ## Getting started
 This plugin is a wrapper around the iOS MMLanScan library:
 [https://github.com/mavris/MMLanScan](https://github.com/mavris/MMLanScan)
