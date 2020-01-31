@@ -1,5 +1,8 @@
 # NativeScript LanScan [Beta]
 (iOS Only)
+
+To work on iOS 13.3 modify the 'MacFinder.h' file in accordance to the PR: [https://github.com/mavris/MacFinder/pull/10](https://github.com/mavris/MacFinder/pull/10)
+
 ## Getting started
 This plugin is a wrapper around the iOS MMLanScan library:
 [https://github.com/mavris/MMLanScan](https://github.com/mavris/MMLanScan)
@@ -62,3 +65,18 @@ lanScan.stop();
 let ssid = lanScan.fetchSSIDInfo();
 
 ```
+
+## Vue Usage
+
+```
+const LanScan = require("nativescript-lan-scan").LanScan;
+
+lanScan.on(LanScan.foundNewDeviceEvent, function(args) {
+        // Device info is found on the args.deviceInfo object...
+        // args.deviceInfo.ipAddress
+        // args.deviceInfo.macAddress
+    });
+    
+lanScan.start()
+```
+
