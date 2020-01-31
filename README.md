@@ -62,3 +62,18 @@ lanScan.stop();
 let ssid = lanScan.fetchSSIDInfo();
 
 ```
+
+## Vue Usage
+
+```
+const LanScan = require("nativescript-lan-scan").LanScan;
+
+lanScan.on(LanScan.foundNewDeviceEvent, function(args) {
+        // Device info is found on the args.deviceInfo object...
+        // args.deviceInfo.ipAddress
+        // args.deviceInfo.macAddress
+    });
+    
+lanScan.start()
+```
+
